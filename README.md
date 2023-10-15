@@ -6,7 +6,20 @@
 ```
 .
 ├── README.md
-├── batch
 ├── api
+├── batch
+├── pbcopy
 └── web
+    └── vstudio
+        ├── README.md
+        ├── next-env.d.ts
+        ├── next.config.js
+        ├── node_modules
+        ├── package-lock.json
+        ├── package.json
+        ├── postcss.config.js
+        ├── public
+        ├── src
+        ├── tailwind.config.ts
+        └── tsconfig.json
 ```
