@@ -7,6 +7,6 @@
 .
 ├── README.md
 ├── batch
-├── flask
-└── next
+├── api
+└── web
 ```
