@@ -8,7 +8,6 @@
 ├── README.md
 ├── api
 ├── batch
-├── pbcopy
 └── web
     └── vstudio
         ├── README.md
