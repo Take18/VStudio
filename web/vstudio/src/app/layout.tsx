@@ -1,7 +1,12 @@
 import type { Metadata } from 'next'
+import { Header } from './Header'
+import './globals.css'
+import { Footer } from './Footer'
+import Favicon from '/public/vstudio.png'
 
 export const metadata: Metadata = {
     title: 'VStudio',
+    icons: [{ rel: 'icon', url: Favicon.src }],
 }
 
 export default function RootLayout({
@@ -11,7 +16,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="ja">
-            <body>{children}</body>
+            <body className="h-screen w-full">
+                <Header />
+                <main className="min-h-[calc(100vh-4rem)] pt-24">
+                    {children}
+                </main>
+                <Footer />
+            </body>
         </html>
     )
 }
