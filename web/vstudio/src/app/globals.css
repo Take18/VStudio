@@ -13,5 +13,5 @@ html {
 }
 
 .border-def {
-    @apply rounded-lg border border-gray-200;
+    @apply border-border rounded-lg border;
 }

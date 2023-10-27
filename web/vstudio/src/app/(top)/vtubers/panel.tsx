@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { VTuber } from '../fetch'
 import { Panel } from '../panel'
+import { formatNumber } from '@/utils/formatter'
 
 type Props = {
     vtuber: VTuber
@@ -21,7 +22,9 @@ export const VTuberPanel = async ({ vtuber }: Props) => {
                         />
                         <span className="text-xl">{vtuber.name}</span>
                     </div>
-                    <span className="text-lg">{vtuber.subscribers} 登録</span>
+                    <span className="text-lg">
+                        {formatNumber(vtuber.subscribers)} 登録
+                    </span>
                 </div>
                 <div className="flex w-[55%] flex-col px-2 py-4">
                     <ul className="list-inside list-disc">
