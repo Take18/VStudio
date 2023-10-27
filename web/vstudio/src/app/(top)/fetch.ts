@@ -1,3 +1,7 @@
+import { PrismaClient } from '@prisma/client'
+
+const prismaClient = new PrismaClient()
+
 export type VTuber = {
     id: string
     name: string
