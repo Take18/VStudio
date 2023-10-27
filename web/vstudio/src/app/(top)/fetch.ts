@@ -11,10 +11,25 @@ export type VTuber = {
 
 export type Song = {
     id: string
+    name: string
+    videoId: string
+    authorName: string
+    tags: string[]
+    vtubers: { name: string; id: string }[]
 }
 
 export type Movie = {
     id: string
+    songName: string
+    vtuberName: string
+    plays: number
+    goods: number
+    videoId: string
+    comments: {
+        content: string
+        goods: number
+    }[]
+    tags: string[]
 }
 
 export type All =
@@ -62,6 +77,41 @@ const vtuber: Omit<VTuber, 'id'> = {
     ],
 }
 
+const song: Omit<Song, 'id'> = {
+    name: 'デイバイデイズ',
+    videoId: 'p00a6QGVjP0',
+    authorName: 'syudou',
+    tags: ['デイバイデイズ', '可不', '初音ミク'],
+    vtubers: [
+        { name: 'Takerin Ch - たけりん', id: '1' },
+        { name: 'Takerin Ch - たけりん', id: '2' },
+        { name: 'Takerin Ch - たけりん', id: '3' },
+        { name: 'Takerin Ch - たけりん', id: '4' },
+    ],
+}
+
+const movie: Omit<Movie, 'id'> = {
+    songName: 'デイバイデイズ',
+    vtuberName: 'Takerin Ch - たけりん',
+    plays: 10000,
+    goods: 1000,
+    videoId: 'kfS_l1QgonA',
+    comments: [
+        { content: 'コメントだよ', goods: 1000 },
+        { content: 'コメントだよ', goods: 1000 },
+        { content: 'コメントだよ', goods: 1000 },
+        { content: 'コメントだよ', goods: 1000 },
+    ],
+    tags: [
+        'nextjs',
+        'nextjs13',
+        'プログラミング',
+        'nextjs',
+        'nextjs13',
+        'プログラミング',
+    ],
+}
+
 export const fetchVTubers = async (): Promise<VTuber[]> => {
     return [
         { ...vtuber, id: '1' },
@@ -71,11 +121,37 @@ export const fetchVTubers = async (): Promise<VTuber[]> => {
     ]
 }
 
+export const fetchSongs = async (): Promise<Song[]> => {
+    return [
+        { ...song, id: '1' },
+        { ...song, id: '2' },
+        { ...song, id: '3' },
+        { ...song, id: '4' },
+    ]
+}
+
+export const fetchMovies = async (): Promise<Movie[]> => {
+    return [
+        { ...movie, id: '1' },
+        { ...movie, id: '2' },
+        { ...movie, id: '3' },
+        { ...movie, id: '4' },
+    ]
+}
+
 export const fetchAll = async (): Promise<All[]> => {
     return [
         { type: 'vtuber', vtuber: { ...vtuber, id: '1' } },
         { type: 'vtuber', vtuber: { ...vtuber, id: '2' } },
         { type: 'vtuber', vtuber: { ...vtuber, id: '3' } },
         { type: 'vtuber', vtuber: { ...vtuber, id: '4' } },
+        { type: 'song', song: { ...song, id: '5' } },
+        { type: 'song', song: { ...song, id: '6' } },
+        { type: 'song', song: { ...song, id: '7' } },
+        { type: 'song', song: { ...song, id: '8' } },
+        { type: 'movie', movie: { ...movie, id: '9' } },
+        { type: 'movie', movie: { ...movie, id: '10' } },
+        { type: 'movie', movie: { ...movie, id: '11' } },
+        { type: 'movie', movie: { ...movie, id: '12' } },
     ]
 }

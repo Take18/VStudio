@@ -1,7 +1,7 @@
 import { fetchVTubers } from '../fetch'
 import { VTuberPanel } from './panel'
 
-const TopAll = async () => {
+const TopVTubers = async () => {
     const vtubers = await fetchVTubers()
 
     return (
@@ -13,4 +13,4 @@ const TopAll = async () => {
     )
 }
 
-export default TopAll
+export default TopVTubers
