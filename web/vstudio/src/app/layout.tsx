@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { Header } from './Header'
+import { Header } from './components/Header'
 import './globals.css'
-import { Footer } from './Footer'
+import { Footer } from './components/Footer'
 import Favicon from '/public/vstudio.png'
 
 export const metadata: Metadata = {

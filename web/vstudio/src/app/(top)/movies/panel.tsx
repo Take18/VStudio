@@ -1,6 +1,6 @@
-import { Embed } from '@/app/Embed'
+import { Embed } from '@/app/components/Embed'
 import { Movie } from '../fetch'
-import { Panel } from '../panel'
+import { Panel } from '../../components/Panel'
 import Image from 'next/image'
 import { formatNumber } from '@/utils/formatter'
 

@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { VTuber } from '../fetch'
-import { Panel } from '../panel'
+import { VTuber } from './fetch'
+import { Panel } from '../../components/Panel'
 import { formatNumber } from '@/utils/formatter'
 
 type Props = {

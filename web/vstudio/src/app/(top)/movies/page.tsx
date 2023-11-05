@@ -1,4 +1,4 @@
-import { fetchMovies } from '../fetch'
+import { fetchMovies } from './fetch'
 import { MoviePanel } from './panel'
 
 const TopMovies = async () => {
