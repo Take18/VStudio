@@ -1,6 +1,6 @@
-import { Embed } from '@/app/Embed'
+import { Embed } from '@/app/components/Embed'
 import { Song } from '../fetch'
-import { Panel } from '../panel'
+import { Panel } from '../../components/Panel'
 
 type Props = {
     song: Song

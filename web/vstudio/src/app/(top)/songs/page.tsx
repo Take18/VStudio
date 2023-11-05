@@ -1,4 +1,4 @@
-import { fetchSongs } from '../fetch'
+import { fetchSongs } from './fetch'
 import { SongPanel } from './panel'
 
 const TopSongs = async () => {

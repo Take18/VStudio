@@ -1,4 +1,4 @@
-import { fetchVTubers } from '../fetch'
+import { fetchVTubers } from './fetch'
 import { VTuberPanel } from './panel'
 
 const TopVTubers = async () => {
