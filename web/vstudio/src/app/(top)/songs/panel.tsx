@@ -1,6 +1,7 @@
-import { Embed } from '@/app/components/Embed'
-import { Song } from '../fetch'
-import { Panel } from '../../components/Panel'
+import { Embed } from '@/app/components/atoms/Embed'
+import { Song } from './fetch'
+import { Panel } from '../components/Panel'
+import { Tags } from '@/app/components/atoms/Tags'
 
 type Props = {
     song: Song
@@ -8,7 +9,7 @@ type Props = {
 
 export const SongPanel = ({ song }: Props) => {
     return (
-        <Panel type="楽曲" href={`/songs/${song.id}`}>
+        <Panel type="楽曲" href={`/song/${song.id}`}>
             <div className="flex">
                 <div className="flex w-44 flex-col gap-2 px-2 py-4">
                     <span className="text-xl">{song.name}</span>
@@ -31,9 +32,7 @@ export const SongPanel = ({ song }: Props) => {
                                 ),
                         )}
                     </ul>
-                    <span className="h-6 overflow-y-hidden break-words text-base">
-                        {song.tags.map((tag) => `#${tag}`).join(' ')}
-                    </span>
+                    <Tags tags={song.tags} />
                 </div>
             </div>
         </Panel>

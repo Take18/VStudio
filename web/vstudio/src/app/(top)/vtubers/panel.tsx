@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { VTuber } from './fetch'
-import { Panel } from '../../components/Panel'
+import { Panel } from '../components/Panel'
 import { formatNumber } from '@/utils/formatter'
+import { Tags } from '@/app/components/atoms/Tags'
+import { Icon } from '@/app/components/atoms/Icon'
 
 type Props = {
     vtuber: VTuber
@@ -13,12 +15,10 @@ export const VTuberPanel = async ({ vtuber }: Props) => {
             <div className="flex">
                 <div className="flex w-[45%] flex-col items-center gap-4 px-2 py-4">
                     <div className="flex w-full items-center gap-4">
-                        <Image
-                            src={vtuber.iconPath}
-                            alt={`${vtuber.name}アイコン`}
-                            width={36}
-                            height={36}
-                            className="rounded-full"
+                        <Icon
+                            iconPath={vtuber.iconPath}
+                            name={vtuber.name}
+                            size={36}
                         />
                         <span className="text-xl">{vtuber.name}</span>
                     </div>
@@ -36,9 +36,7 @@ export const VTuberPanel = async ({ vtuber }: Props) => {
                             ) : null,
                         )}
                     </ul>
-                    <span className="h-6 overflow-y-hidden break-words text-base">
-                        {vtuber.tags.map((tag) => `#${tag}`).join(' ')}
-                    </span>
+                    <Tags tags={vtuber.tags} />
                 </div>
             </div>
         </Panel>
