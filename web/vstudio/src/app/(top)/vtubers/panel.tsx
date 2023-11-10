@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { VTuber } from './fetch'
-import { Panel } from '../../components/Panel'
+import { Panel } from '../components/Panel'
 import { formatNumber } from '@/utils/formatter'
+import { Tags } from '@/app/components/atoms/Tags'
 
 type Props = {
     vtuber: VTuber
@@ -36,9 +37,7 @@ export const VTuberPanel = async ({ vtuber }: Props) => {
                             ) : null,
                         )}
                     </ul>
-                    <span className="h-6 overflow-y-hidden break-words text-base">
-                        {vtuber.tags.map((tag) => `#${tag}`).join(' ')}
-                    </span>
+                    <Tags tags={vtuber.tags} />
                 </div>
             </div>
         </Panel>
