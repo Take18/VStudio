@@ -1,5 +1,5 @@
 import { Embed } from '@/app/components/Embed'
-import { Song } from '../fetch'
+import { Song } from './fetch'
 import { Panel } from '../../components/Panel'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export const SongPanel = ({ song }: Props) => {
     return (
-        <Panel type="楽曲" href={`/songs/${song.id}`}>
+        <Panel type="楽曲" href={`/song/${song.id}`}>
             <div className="flex">
                 <div className="flex w-44 flex-col gap-2 px-2 py-4">
                     <span className="text-xl">{song.name}</span>
