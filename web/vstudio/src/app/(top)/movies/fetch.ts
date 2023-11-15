@@ -17,12 +17,16 @@ export type Movie = {
 const prismaClient = new PrismaClient()
 
 export const fetchMovies = async (): Promise<Movie[]> => {
-    const movies = await prismaClient.movie.findMany({
-        include: { song: true, vtuber: true },
-    })
-    return movies.map(({ song, vtuber, ...movie }) => ({
-        ...movie,
-        songName: song.name,
-        vtuberName: vtuber.name,
-    }))
+    try {
+        const movies = await prismaClient.movie.findMany({
+            include: { song: true, vtuber: true },
+        })
+        return movies.map(({ song, vtuber, ...movie }) => ({
+            ...movie,
+            songName: song.name,
+            vtuberName: vtuber.name,
+        }))
+    } catch {
+        return []
+    }
 }

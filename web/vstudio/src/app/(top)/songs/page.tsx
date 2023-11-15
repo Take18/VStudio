@@ -1,17 +1,10 @@
-import { Suspense } from 'react'
 import { fetchSongs } from './fetch'
 import { SongPanel } from './panel'
 
 const TopSongs = async () => {
-    const fetchingSongs = fetchSongs()
+    const songs = await fetchSongs()
 
-    return (
-        <Suspense fallback={<></>}>
-            {fetchingSongs.then((songs) =>
-                songs.map((song) => <SongPanel key={song.id} song={song} />),
-            )}
-        </Suspense>
-    )
+    return songs.map((song) => <SongPanel key={song.id} song={song} />)
 }
 
 export default TopSongs

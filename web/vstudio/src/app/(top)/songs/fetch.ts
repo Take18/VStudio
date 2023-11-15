@@ -12,12 +12,16 @@ export type Song = {
 const prismaClient = new PrismaClient()
 
 export const fetchSongs = async (): Promise<Song[]> => {
-    const songs = await prismaClient.song.findMany({
-        include: { movies: { include: { vtuber: true } } },
-    })
-    return songs.map(({ movies, author, ...song }) => ({
-        ...song,
-        authorName: author.name,
-        vtubers: movies.map(({ vtuber: { id, name } }) => ({ id, name })),
-    }))
+    try {
+        const songs = await prismaClient.song.findMany({
+            include: { movies: { include: { vtuber: true } } },
+        })
+        return songs.map(({ movies, author, ...song }) => ({
+            ...song,
+            authorName: author.name,
+            vtubers: movies.map(({ vtuber: { id, name } }) => ({ id, name })),
+        }))
+    } catch {
+        return []
+    }
 }

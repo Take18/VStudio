@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 
 type Props = {
     children: ReactNode
@@ -45,7 +45,7 @@ const TopLayout = ({ children }: Props) => {
                 ))}
             </div>
             <div className="flex flex-col border-x border-b border-gray-200">
-                {children}
+                <Suspense fallback={<></>}>{children}</Suspense>
             </div>
         </div>
     )
