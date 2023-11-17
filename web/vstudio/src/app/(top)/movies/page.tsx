@@ -1,19 +1,10 @@
-import { Suspense } from 'react'
 import { fetchMovies } from './fetch'
 import { MoviePanel } from './panel'
 
 const TopMovies = async () => {
-    const fetchingMovies = fetchMovies()
+    const movies = await fetchMovies()
 
-    return (
-        <Suspense fallback={<></>}>
-            {fetchingMovies.then((movies) =>
-                movies.map((movie) => (
-                    <MoviePanel key={movie.id} movie={movie} />
-                )),
-            )}
-        </Suspense>
-    )
+    return movies.map((movie) => <MoviePanel key={movie.id} movie={movie} />)
 }
 
 export default TopMovies

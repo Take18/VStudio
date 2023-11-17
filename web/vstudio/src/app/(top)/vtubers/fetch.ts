@@ -14,11 +14,15 @@ export type VTuber = {
 const prismaClient = new PrismaClient()
 
 export const fetchVTubers = async (): Promise<VTuber[]> => {
-    const vtubers = await prismaClient.vTuber.findMany({
-        include: { movies: { include: { song: true } } },
-    })
-    return vtubers.map(({ movies, ...vtuber }) => ({
-        ...vtuber,
-        songs: movies.map(({ song: { id, name } }) => ({ id, name })),
-    }))
+    try {
+        const vtubers = await prismaClient.vTuber.findMany({
+            include: { movies: { include: { song: true } } },
+        })
+        return vtubers.map(({ movies, ...vtuber }) => ({
+            ...vtuber,
+            songs: movies.map(({ song: { id, name } }) => ({ id, name })),
+        }))
+    } catch {
+        return []
+    }
 }

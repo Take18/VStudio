@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 
 type Props = {
     children: ReactNode
@@ -7,7 +7,9 @@ type Props = {
 const DetailLayout = ({ children }: Props) => {
     return (
         <div className="mx-auto my-8 w-[375px]">
-            <div className="border border-gray-200">{children}</div>
+            <div className="border border-gray-200">
+                <Suspense fallback={<></>}>{children}</Suspense>
+            </div>
         </div>
     )
 }

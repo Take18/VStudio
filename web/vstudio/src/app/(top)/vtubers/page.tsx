@@ -1,19 +1,12 @@
-import { Suspense } from 'react'
 import { fetchVTubers } from './fetch'
 import { VTuberPanel } from './panel'
 
 const TopVTubers = async () => {
-    const fetchingVTubers = fetchVTubers()
+    const vtubers = await fetchVTubers()
 
-    return (
-        <Suspense fallback={<></>}>
-            {fetchingVTubers.then((vtubers) =>
-                vtubers.map((vtuber) => (
-                    <VTuberPanel key={vtuber.id} vtuber={vtuber} />
-                )),
-            )}
-        </Suspense>
-    )
+    return vtubers.map((vtuber) => (
+        <VTuberPanel key={vtuber.id} vtuber={vtuber} />
+    ))
 }
 
 export default TopVTubers
