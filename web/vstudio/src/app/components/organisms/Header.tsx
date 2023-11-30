@@ -1,9 +1,17 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const Header = () => {
     return (
         <header className="fixed top-0 z-10 flex h-24 w-full items-center justify-between border-b border-black bg-white px-16">
-            <Image src={'/vstudio.png'} alt="VStudio" width={50} height={50} />
+            <Link href={'/'}>
+                <Image
+                    src={'/vstudio.png'}
+                    alt="VStudio"
+                    width={50}
+                    height={50}
+                />
+            </Link>
             <div className="my-6 flex justify-between gap-4">
                 <button
                     type="button"
