@@ -1,5 +1,5 @@
 import { PageParams } from '@/types/PageParams'
-import { fetchMoviesBySong, fetchSong } from './fetch'
+import { fetchSong } from './fetch'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Icon } from '@/app/components/atoms/Icon'
@@ -7,12 +7,11 @@ import { Plays } from '@/app/components/atoms/Plays'
 import { Goods } from '@/app/components/atoms/Goods'
 import { Tags } from '@/app/components/atoms/Tags'
 import { Embed } from '@/app/components/atoms/Embed'
-import { Movies } from '../../components/Movies'
-import { MovieRow } from '../../components/MovieRow'
+import { Suspense } from 'react'
+import { Movies } from './movies'
 
 const Song = async ({ params: { songId } }: PageParams<['songId']>) => {
     const song = await fetchSong(songId)
-    const movies = await fetchMoviesBySong(songId)
 
     if (song === null) notFound()
 
@@ -51,15 +50,9 @@ const Song = async ({ params: { songId } }: PageParams<['songId']>) => {
             </div>
             <hr />
             <div className="m-4 flex flex-col gap-4">
-                <Movies>
-                    {movies.map((movie) => (
-                        <MovieRow
-                            key={movie.id}
-                            movie={movie}
-                            name={movie.vtuber.name}
-                        />
-                    ))}
-                </Movies>
+                <Suspense fallback={<></>}>
+                    <Movies songId={songId} />
+                </Suspense>
             </div>
         </div>
     )
