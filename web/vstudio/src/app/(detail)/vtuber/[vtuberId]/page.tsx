@@ -1,16 +1,15 @@
 import { PageParams } from '@/types/PageParams'
-import { fetchMoviesByVTuber, fetchVTuber } from './fetch'
+import { fetchVTuber } from './fetch'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Icon } from '@/app/components/atoms/Icon'
 import { formatNumber } from '@/utils/formatter'
-import { Movies } from '../../components/Movies'
-import { MovieRow } from '../../components/MovieRow'
 import { Tags } from '@/app/components/atoms/Tags'
+import { Movies } from './movies'
+import { Suspense } from 'react'
 
 const VTuber = async ({ params: { vtuberId } }: PageParams<['vtuberId']>) => {
     const vtuber = await fetchVTuber(vtuberId)
-    const movies = await fetchMoviesByVTuber(vtuberId)
 
     if (vtuber === null) notFound()
 
@@ -48,15 +47,9 @@ const VTuber = async ({ params: { vtuberId } }: PageParams<['vtuberId']>) => {
             </div>
             <hr />
             <div className="m-4 flex flex-col gap-4">
-                <Movies>
-                    {movies.map((movie) => (
-                        <MovieRow
-                            key={movie.id}
-                            movie={movie}
-                            name={movie.song.name}
-                        />
-                    ))}
-                </Movies>
+                <Suspense fallback={<></>}>
+                    <Movies vtuberId={vtuberId} />
+                </Suspense>
             </div>
         </div>
     )

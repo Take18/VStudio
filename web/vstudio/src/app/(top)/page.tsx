@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { fetchAll } from './fetch'
 import { MoviePanel } from './movies/panel'
 import { SongPanel } from './songs/panel'

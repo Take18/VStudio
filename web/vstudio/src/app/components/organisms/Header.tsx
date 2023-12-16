@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { SearchInput } from '../molecules/SearchInput'
 
 export const Header = () => {
     return (
@@ -31,11 +32,7 @@ export const Header = () => {
                         width={20}
                         height={20}
                     />
-                    <input
-                        type="text"
-                        className="h-full w-80 text-xl"
-                        placeholder="Search"
-                    />
+                    <SearchInput />
                 </div>
             </div>
         </header>

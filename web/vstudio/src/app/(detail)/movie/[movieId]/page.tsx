@@ -7,7 +7,8 @@ import { Plays } from '@/app/components/atoms/Plays'
 import { Goods } from '@/app/components/atoms/Goods'
 import { Tags } from '@/app/components/atoms/Tags'
 import { Embed } from '@/app/components/atoms/Embed'
-import { Comment } from '@/app/components/atoms/Comment'
+import { Suspense } from 'react'
+import { Comments } from './comments'
 
 const Movie = async ({ params: { movieId } }: PageParams<['movieId']>) => {
     const movie = await fetchMovie(movieId)
@@ -50,11 +51,9 @@ const Movie = async ({ params: { movieId } }: PageParams<['movieId']>) => {
                 </div>
             </div>
             <div className="m-4 flex flex-col gap-4">
-                {/* TODO: 無限スクロールの実装 */}
-                {movie.comments.map(({ content }, index) => (
-                    // コメントごとに定まるIDがない、かつコメントは変動しないのでindexをkeyに
-                    <Comment key={index} content={content} />
-                ))}
+                <Suspense fallback={<></>}>
+                    <Comments movieId={movieId} />
+                </Suspense>
             </div>
         </div>
     )
