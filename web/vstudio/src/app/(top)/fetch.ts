@@ -1,9 +1,6 @@
-import { PrismaClient } from '@prisma/client'
 import { VTuber, fetchVTubers } from './vtubers/fetch'
 import { Song, fetchSongs } from './songs/fetch'
 import { Movie, fetchMovies } from './movies/fetch'
-
-const prismaClient = new PrismaClient()
 
 export type All =
     | {
