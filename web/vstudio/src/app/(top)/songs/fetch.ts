@@ -16,6 +16,15 @@ export const fetchSongs = async ({ query = [] }: SearchOptions = {}): Promise<
     try {
         const songs = await prismaClient.song.findMany({
             include: { movies: { include: { vtuber: true } } },
+            where: {
+                AND: query.map((q) => ({
+                    OR: [
+                        { name: { contains: q } },
+                        { description: { contains: q } },
+                        { tags: { has: q } },
+                    ],
+                })),
+            },
         })
         return songs.map(({ movies, author, ...song }) => ({
             ...song,

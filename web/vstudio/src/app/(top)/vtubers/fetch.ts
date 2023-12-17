@@ -18,6 +18,15 @@ export const fetchVTubers = async ({ query = [] }: SearchOptions = {}): Promise<
     try {
         const vtubers = await prismaClient.vTuber.findMany({
             include: { movies: { include: { song: true } } },
+            where: {
+                AND: query.map((q) => ({
+                    OR: [
+                        { name: { contains: q } },
+                        { profile: { contains: q } },
+                        { tags: { has: q } },
+                    ],
+                })),
+            },
         })
         return vtubers.map(({ movies, ...vtuber }) => ({
             ...vtuber,
