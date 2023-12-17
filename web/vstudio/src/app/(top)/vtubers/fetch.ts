@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prismaClient } from '@/prismaClient'
+import { SearchOptions } from '@/types/SearchOptions'
 
 export type VTuber = {
     id: string
@@ -11,9 +12,9 @@ export type VTuber = {
     songs: { name: string; id: string }[]
 }
 
-const prismaClient = new PrismaClient()
-
-export const fetchVTubers = async (): Promise<VTuber[]> => {
+export const fetchVTubers = async ({ query = [] }: SearchOptions = {}): Promise<
+    VTuber[]
+> => {
     try {
         const vtubers = await prismaClient.vTuber.findMany({
             include: { movies: { include: { song: true } } },

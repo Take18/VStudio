@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
-const prismaClient = new PrismaClient()
+import { prismaClient } from '@/prismaClient'
 
 export const fetchSong = async (songId: string) => {
     try {

@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prismaClient } from '@/prismaClient'
+import { SearchOptions } from '@/types/SearchOptions'
 
 export type Movie = {
     id: string
@@ -14,9 +15,9 @@ export type Movie = {
     tags: string[]
 }
 
-const prismaClient = new PrismaClient()
-
-export const fetchMovies = async (): Promise<Movie[]> => {
+export const fetchMovies = async ({ query = [] }: SearchOptions = {}): Promise<
+    Movie[]
+> => {
     try {
         const movies = await prismaClient.movie.findMany({
             include: { song: true, vtuber: true },

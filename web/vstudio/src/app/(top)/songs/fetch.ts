@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prismaClient } from '@/prismaClient'
+import { SearchOptions } from '@/types/SearchOptions'
 
 export type Song = {
     id: string
@@ -9,9 +10,9 @@ export type Song = {
     vtubers: { name: string; id: string }[]
 }
 
-const prismaClient = new PrismaClient()
-
-export const fetchSongs = async (): Promise<Song[]> => {
+export const fetchSongs = async ({ query = [] }: SearchOptions = {}): Promise<
+    Song[]
+> => {
     try {
         const songs = await prismaClient.song.findMany({
             include: { movies: { include: { vtuber: true } } },

@@ -1,6 +1,5 @@
-import { Prisma, PrismaClient } from '@prisma/client'
-
-const prismaClient = new PrismaClient()
+import { prismaClient } from '@/prismaClient'
+import { Prisma } from '@prisma/client'
 
 export const fetchMovie = async (movieId: string) => {
     type Select = Exclude<
