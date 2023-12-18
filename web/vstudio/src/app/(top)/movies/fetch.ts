@@ -26,8 +26,14 @@ export const fetchMovies = async ({ query = [] }: SearchOptions = {}): Promise<
                     OR: [
                         {
                             vtuber: { name: { contains: q } },
+                        },
+                        {
                             song: { name: { contains: q } },
+                        },
+                        {
                             description: { contains: q },
+                        },
+                        {
                             tags: { has: q },
                         },
                     ],
