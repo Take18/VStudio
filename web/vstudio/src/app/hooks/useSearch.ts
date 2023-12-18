@@ -12,7 +12,6 @@ export const useSearch = () => {
         setSearchQuery(e.currentTarget.value)
     const onSubmitForm: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        if (searchQuery === '') return
 
         const targetTab = (() => {
             if (pathname.startsWith('/movies')) return '/movies'
