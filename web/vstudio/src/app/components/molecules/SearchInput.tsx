@@ -6,10 +6,10 @@ export const SearchInput = () => {
     const { value, onChange, onSubmitForm } = useSearch()
 
     return (
-        <form onSubmit={onSubmitForm}>
+        <form onSubmit={onSubmitForm} className="h-full">
             <input
                 type="text"
-                className="h-full w-80 text-xl"
+                className="max-w-80 h-full text-xl"
                 placeholder="Search"
                 onChange={onChange}
                 value={value}
